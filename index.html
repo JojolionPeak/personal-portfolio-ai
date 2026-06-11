@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jonathan Bernal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home">
+      <h1>Jonathan Bernal</h1>
+      <p class="subtitle">Software Engineer</p>
+      <p class="blurb">
+        My journey into tech began during my sophomore year of college when I stumbled across a Python
+        tutorial and became fascinated by the idea of building things from nothing but logic and code.
+        What started as weekend curiosity quickly turned into a passion, leading me to shift my academic
+        focus toward computer science and web development. Over the past few years I have worked on
+        full-stack projects that deepened my understanding of both frontend design and backend
+        architecture. Today I am driven by a desire to build meaningful, user-centered applications and
+        continue growing as an engineer.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-left">
+        <h2>About Me</h2>
+        <p>
+          I have always been drawn to the intersection of creativity and logic, which is why web
+          development feels like such a natural fit for me. On the technical side, I am especially
+          interested in building clean, responsive user interfaces and designing efficient RESTful APIs.
+          Outside of coding I enjoy hiking on weekends and exploring local trails whenever I get the
+          chance. I am also an avid reader, particularly of science fiction novels that explore the
+          future of technology and humanity. Music is another big part of my life — I play guitar in my
+          spare time and love discovering new artists across different genres.
+        </p>
+      </div>
+      <div class="about-right">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">TailwindCSS</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Vite</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-container">
+
+        <div class="project-card">
+          <div class="project-img-placeholder" role="img" aria-label="CLI Project placeholder"><span>CLI Project</span></div>
+          <div class="project-card-body">
+            <h3>CLI Quiz Game</h3>
+            <p>A small quiz game that runs in your computer's command line interface.</p>
+            <div class="skills-used">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Node.js</span>
+            </div>
+            <div class="project-links">
+              <a aria-label="Live Site for CLI Quiz Game (not available)">Live Site (N/A)</a>
+              <a href="https://github.com/JojolionPeak/quiz-game" target="_blank" rel="noopener noreferrer" aria-label="GitHub for CLI Quiz Game">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLPxYQtYycMCXjTVEtQStl5XN2ITIFBuiXYw&s" alt="Shadow Realm Yu-Gi-Oh Card Generator preview" />
+          <div class="project-card-body">
+            <h3>Yu-Gi-Oh Card Generator</h3>
+            <p>A web app that displays random Yu-Gi-Oh! cards in a dynamic and visually immersive way.</p>
+            <div class="skills-used">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Vite</span>
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://jose-jojo-mls.github.io/ShadowRealm/" target="_blank" rel="noopener noreferrer" aria-label="Live site for Shadow Realm Yu-Gi-Oh Card Generator">Live Site</a>
+              <a href="https://github.com/jose-jojo-mls/ShadowRealm" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for Shadow Realm">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCz7YvEwF0ZF9FQnfknZBRWPDe8idMWiGWag&s" alt="Mementos finance tracker preview" />
+          <div class="project-card-body">
+            <h3>Mementos</h3>
+            <p>A clean, self-hosted web app that lets you manually track your accounts and transactions, visualize your spending, and understand where your money actually goes.</p>
+            <div class="skills-used">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Vite</span>
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">TailwindCSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://mementos-u3hu.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="Live site for Mementos finance tracker">Live Site</a>
+              <a href="https://github.com/The-Marcy-Lab-School-Assignments/full-stack-project-remix-JojolionPeak" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for Mementos">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <!-- To make the form send emails, sign up at formspree.io, create a form pointed at Johnanber@gmail.com, and replace YOUR_FORM_ID below with the ID they give you. -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-container">
+
+        <form action="https://formspree.io/f/xkoavdrb" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+
+        <div class="find-me-online">
+          <h3>Find Me Online</h3>
+          <a href="https://github.com/JojolionPeak" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/jonathan-bernal04" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:Johnanber@gmail.com">Email Me</a>
+        </div>
+
+      </div>
+    </section>
+
+  </body>
+</html>

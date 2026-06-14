@@ -8,10 +8,51 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --page: #ffffff;
+  --surface: #f9f9f9;
+  --surface-2: #f0f0f0;
+  --surface-3: #e8e8e8;
+  --text: #111111;
+  --text-body: #333333;
+  --text-muted: #555555;
+  --text-dim: #444444;
+  --text-placeholder: #888888;
+  --border: #e0e0e0;
+  --border-strong: #111111;
+  --input-border: #dddddd;
+  --nav-bg: #ffffff;
+  --card-bg: #ffffff;
+  --accent: #ff00ff;
+  --shadow-lift: 0 8px 24px rgba(255, 0, 255, 0.28);
+  --shadow-card: 0 12px 32px rgba(255, 0, 255, 0.22);
+}
+
+[data-theme="dark"] {
+  --page: #18181f;
+  --surface: #111118;
+  --surface-2: #2e2e3a;
+  --surface-3: #2a2a38;
+  --text: #e0e0e0;
+  --text-body: #cccccc;
+  --text-muted: #888899;
+  --text-dim: #aaaaaa;
+  --text-placeholder: #888899;
+  --border: #2a2a38;
+  --border-strong: #00ff9f;
+  --input-border: #3a3a4a;
+  --nav-bg: rgba(24, 24, 31, 0.92);
+  --card-bg: #18181f;
+  --accent: #00ff9f;
+  --shadow-lift: 0 8px 24px rgba(0, 255, 159, 0.2);
+  --shadow-card: 0 12px 32px rgba(0, 255, 159, 0.18);
+}
+
 body {
   font-family: sans-serif;
-  background-color: #ffffff;
-  color: #111111;
+  background-color: var(--page);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ── NAV ─────────────────────────────────────────── */
@@ -21,12 +62,15 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
   padding: 16px 40px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 nav ul {
@@ -37,13 +81,46 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: #111111;
+  color: var(--text);
   font-size: 1rem;
   font-weight: 500;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.75s ease;
 }
 
 nav a:hover {
-  color: #555555;
+  color: var(--text-muted);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-toggle:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 /* ── SHARED SECTION STYLES ───────────────────────── */
@@ -55,6 +132,17 @@ section {
 
 /* ── HOME ────────────────────────────────────────── */
 
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 #home {
   min-height: 100vh;
   display: flex;
@@ -62,6 +150,8 @@ section {
   justify-content: center;
   align-items: center;
   text-align: center;
+  opacity: 0;
+  animation: fadeInFromLeft 1.2s ease-out forwards;
 }
 
 h1 {
@@ -72,7 +162,7 @@ h1 {
 .subtitle {
   font-size: 1.5rem;
   margin-top: 8px;
-  color: #555555;
+  color: var(--text-muted);
 }
 
 .blurb {
@@ -80,7 +170,7 @@ h1 {
   margin-top: 24px;
   font-size: 1rem;
   line-height: 1.8;
-  color: #333333;
+  color: var(--text-body);
 }
 
 /* ── ABOUT ───────────────────────────────────────── */
@@ -103,7 +193,7 @@ h1 {
 .about-left p {
   font-size: 1rem;
   line-height: 1.8;
-  color: #333333;
+  color: var(--text-body);
 }
 
 .about-right {
@@ -122,7 +212,8 @@ h1 {
 }
 
 .skill-tag {
-  background-color: #f0f0f0;
+  background-color: var(--surface-2);
+  color: var(--text-dim);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -132,7 +223,7 @@ h1 {
 /* ── PROJECTS ────────────────────────────────────── */
 
 #projects {
-  background-color: #f9f9f9;
+  background-color: var(--surface);
 }
 
 #projects > h2 {
@@ -152,10 +243,16 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 320px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
 }
 
 .project-card img {
@@ -167,11 +264,11 @@ h1 {
 .project-img-placeholder {
   width: 100%;
   height: 200px;
-  background-color: #e8e8e8;
+  background-color: var(--surface-3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888888;
+  color: var(--text-placeholder);
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -191,7 +288,7 @@ h1 {
 
 .project-card-body p {
   font-size: 0.9rem;
-  color: #444444;
+  color: var(--text-dim);
   line-height: 1.6;
   flex: 1;
 }
@@ -212,17 +309,20 @@ h1 {
   flex: 1;
   text-align: center;
   padding: 8px 12px;
-  border: 1px solid #111111;
+  border: 1px solid var(--border-strong);
   border-radius: 4px;
   text-decoration: none;
-  color: #111111;
+  color: var(--text);
   font-size: 0.875rem;
   font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .project-links a:hover {
-  background-color: #111111;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--page);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
 }
 
 /* ── CONTACT ─────────────────────────────────────── */
@@ -257,11 +357,12 @@ form label {
 form input,
 form textarea {
   padding: 12px;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--input-border);
   border-radius: 4px;
   font-family: inherit;
   font-size: 1rem;
-  color: #111111;
+  color: var(--text);
+  background-color: var(--surface-3);
 }
 
 form textarea {
@@ -272,22 +373,25 @@ form textarea {
 form input:focus,
 form textarea:focus {
   outline: none;
-  border-color: #111111;
+  border-color: var(--border-strong);
 }
 
 form button {
   padding: 12px;
-  background-color: #111111;
-  color: #ffffff;
+  background-color: var(--border-strong);
+  color: var(--page);
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 form button:hover {
-  background-color: #333333;
+  background-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
 }
 
 .find-me-online {
@@ -295,7 +399,7 @@ form button:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 24px;
 }
@@ -307,16 +411,161 @@ form button:hover {
 
 .find-me-online a {
   padding: 10px 16px;
-  border: 1px solid #111111;
+  border: 1px solid var(--border-strong);
   border-radius: 4px;
   text-decoration: none;
-  color: #111111;
+  color: var(--text);
   font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .find-me-online a:hover {
-  background-color: #111111;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--page);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── DEV MODALS ──────────────────────────────────────── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-box {
+  background-color: var(--page);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.modal-box--wide {
+  max-width: 500px;
+}
+
+.modal-box h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.modal-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.modal-label input,
+.modal-label textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background-color: var(--surface-3);
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.modal-label textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.modal-label input:focus,
+.modal-label textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.modal-error {
+  font-size: 0.8rem;
+  color: #ff4444;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.modal-actions button {
+  padding: 9px 22px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-actions button.primary {
+  background-color: var(--accent);
+  color: var(--page);
+}
+
+.modal-actions button.secondary {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.modal-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── DEV ADD-PROJECT CARD ─────────────────────────────── */
+
+.add-project-card {
+  width: 320px;
+  min-height: 260px;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-6px);
+}
+
+.plus-btn {
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--border);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.add-project-card:hover .plus-btn {
+  color: var(--accent);
+  transform: scale(1.15);
 }
